@@ -7,15 +7,39 @@
         <title>Black Jack</title>
     </head>
     <body>
-        <div>
-            <script>
-                document.write("Dealer Hand: <br>");
-            </script>
-        </div>
-        <div>
-            <script>
-                document.write("Your Hand: <br>");
-            </script>
-        </div>
+        <div id="dealerTitle">Dealer Hand:</div>
+        <div id="dealerCardsTitle">Cards:</div>
+        <div id="dealerCards"></div>
+        <div id="dealerValue"></div>
+        <div id="playerTitle">Your Hand:</div>
+        <div id="playerCardsTitle">Cards:</div>
+        <div id="playerCards"></div>
+        <div id="playerValue"></div>
+        <button id="playButtton" onclick="gameStart()">Start Game</button>
+        <button id="hitButton" onclick="playerHit()">Hit</button>
+        <button id="stayButton" onclick="dealerTurn()">Stay</button>
+        <style>
+            #splitButton{
+                visibility: hidden;
+            }
+
+            #playerCards{
+                margin-left: 10px;
+            }
+
+            #dealerCards{
+                margin-left: 10px;
+            }
+
+            #dealerValue{
+                margin-left: 10px;
+            }
+
+            #playerValue{
+                margin-left: 10px;
+            }
+        </style>
+        <button id="doubleButton">Double Down</button>
+        <button id="splitButton">Split</button>
     </body>
 </html>
