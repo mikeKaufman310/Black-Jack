@@ -39,10 +39,15 @@ public class Deck{
         deck.add(new Card("King", new Suit(4), 10));
         deck.add(new Card("Ace", new Suit(4), 11));
     }
+    public Card dealHit(){
+        Card card = this.deck.get(0);
+        this.deck.remove(0);
+        return card;
+    }
     public Hand deal(){
         Hand hand = new Hand(this.deck.get(0), this.deck.get(1));
         this.deck.remove(0);
-        this.deck.remove(1);
+        this.deck.remove(0);
         return hand;
     }
     public void shuffle(){

@@ -26,6 +26,9 @@ public class Hand{
         }
         return value;
     }
+    public static Hand newHand(Deck deck){
+        return deck.deal();
+    }
     public boolean bust(){
         if(this.handValue() > 21){
             return true;

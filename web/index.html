@@ -8,17 +8,29 @@
     </head>
     <body>
         <div id="dealerTitle">Dealer Hand:</div>
-        <div id="dealerCardsTitle">Cards:</div>
-        <div id="dealerCards"></div>
-        <div id="dealerValue"></div>
+        <div id="dealerStatArea">
+            <div id="dealerCardsTitle">Cards:</div>
+            <div id="dealerCards"></div>
+            <div id="dealerValue"></div>
+        </div>
         <div id="playerTitle">Your Hand:</div>
-        <div id="playerCardsTitle">Cards:</div>
-        <div id="playerCards"></div>
-        <div id="playerValue"></div>
-        <button id="playButtton" onclick="gameStart()">Start Game</button>
+        <div id="playerStatArea">
+            <div id="playerCardsTitle">Cards:</div>
+            <div id="playerCards"></div>
+            <div id="playerValue"></div>
+        </div>
+        <button id="playButton" onclick="gameStart()">Start Game</button>
         <button id="hitButton" onclick="playerHit()">Hit</button>
         <button id="stayButton" onclick="dealerTurn()">Stay</button>
         <style>
+            #dealerStatArea{
+                margin-left: 10px;
+            }
+
+            #playerStatArea{
+                margin-left: 10px;
+            }
+
             #splitButton{
                 visibility: hidden;
             }
@@ -41,5 +53,6 @@
         </style>
         <button id="doubleButton">Double Down</button>
         <button id="splitButton">Split</button>
+        <div id="winnerBox"></div>
     </body>
 </html>
