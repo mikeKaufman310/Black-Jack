@@ -9,3 +9,7 @@ todo:
 - make web frontend
 - use ngrok or something to host both back and front ends
 - get money
+
+running it:
+backend => run "make", run "make run"
+frontend => use liveserver to host index.html and associated scripts

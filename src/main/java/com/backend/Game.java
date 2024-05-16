@@ -15,7 +15,14 @@ public class Game{
         final Gson gson = new Gson();
         //send hand values to front end to display
         Spark.get("/hands", (req, res) -> {
-            return "";//return dealer and player hands
+            ApiResponse<Hand[]> response = new ApiResponse<>();
+            response.setSuccess(true);
+            response.setMessage("Initial Hands for Game");
+            Hand[] hands = {dealerHand, playerHand};
+            response.setData(hands);
+            res.type("application/json");
+            return new Gson().toJson(response);
         });
     }
+
 }
