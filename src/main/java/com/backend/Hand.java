@@ -1,3 +1,5 @@
+package main.java.com.backend;
+
 import java.util.ArrayList;
 
 public class Hand{
@@ -25,7 +27,7 @@ public class Hand{
         return value;
     }
     public boolean bust(){
-        if(this.hand.handValue > 21){
+        if(this.handValue() > 21){
             return true;
         }
         return false;

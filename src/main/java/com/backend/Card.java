@@ -1,4 +1,4 @@
-//package src;
+package main.java.com.backend;
 
 import java.util.*;
 public class Card {
