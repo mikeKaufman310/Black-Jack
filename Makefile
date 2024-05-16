@@ -2,7 +2,7 @@ build:
 	mvn clean package
 
 run:
-	java -jar target/backend-1.0-SNAPSHOT.jar
+	java -cp target/backend-1.0-SNAPSHOT.jar main.java.com.backend.Game
 
 clean:
 	mvn clean
