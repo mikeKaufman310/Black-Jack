@@ -104,8 +104,22 @@ function endGame(bust, blackjack, dealerWin){
     //end game code
     //calculate scores and display output
     //make sure to terminate game in backend server
+    let winnerBox = document.getElementById("winnerBox");
     if(bust||dealerWin){//dealer wins
-        document.write("Dealer Wins!!!");
+        console.log("Dealer Wins!!!");
+        if(bust){
+            winnerBox.innerHTML = "Dealer Wins by Bust!!!";
+        }else{
+            winnerBox.innerHTML = "Dealer Wins by Blackjack!!!";
+        }
+        fetch(`${backendUrl}/restart`)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Restarting server");
+        })
+        .catch(error => {
+            console.error("Error in response");
+        });
     }else{
         let dealerScore = 0;
         let playerScore = 0;
@@ -117,7 +131,6 @@ function endGame(bust, blackjack, dealerWin){
             .then(response => response.json())
             .then(data => {
                 playerScore = data.data;
-                let winnerBox = document.getElementById("winnerBox");
                 if(playerScore > dealerScore){
                     console.log("Player wins");
                     winnerBox.innerHTML = "You win!!!";
