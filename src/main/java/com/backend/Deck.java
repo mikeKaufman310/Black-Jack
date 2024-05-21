@@ -54,10 +54,11 @@ public class Deck{
     public void shuffle(){
         Random rand = new Random();
         for(int i = 0; i < 52; i++){
-            int tempIndex = rand.nextInt(51);
-            Card tempCard = this.deck.get(tempIndex);
-            this.deck.set(tempIndex, this.deck.get(51-tempIndex));
-            this.deck.set((51-tempIndex), tempCard);
+            int tempIndex1 = rand.nextInt(51);
+            int tempIndex2 = rand.nextInt(51);
+            Card tempCard = this.deck.get(tempIndex1);
+            this.deck.set(tempIndex1, this.deck.get(tempIndex2));
+            this.deck.set(tempIndex2, tempCard);
         }
     }
 }

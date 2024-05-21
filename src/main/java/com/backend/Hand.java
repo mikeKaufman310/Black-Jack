@@ -19,6 +19,8 @@ public class Hand{
         int value = 0;
         for(Card i: this.hand){
             value+=i.value;
+        }
+        for(Card i: this.hand){
             if(value > 21 && i.name.compareTo("Ace")==0){
                 value-=i.value;
                 value+=1;

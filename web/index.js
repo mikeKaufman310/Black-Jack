@@ -167,15 +167,15 @@ function endGame(bust, blackjack, dealerWin){
             .then(response => response.json())
             .then(data => {
                 playerScore = data.data;
-                if(playerScore > dealerScore){
-                    console.log("Player wins");
-                    winnerBox.innerHTML = "You win!!!";
+                if((playerScore < dealerScore) && (dealerScore <= 21)){
+                    console.log("Dealer wins")
+                    winnerBox.innerHTML = "Dealer wins!!!";
                 }else if(playerScore == dealerScore){
                     console.log("Push");
                     winnerBox.innerHTML = "Push";
                 }else{
-                    console.log("Dealer wins")
-                    winnerBox.innerHTML = "Dealer wins!!!";
+                    console.log("Player wins");
+                    winnerBox.innerHTML = "You win!!!";
                 }
                 fetch(`${backendUrl}/restart`)
                 .then(response => response.json())
@@ -199,16 +199,26 @@ function endGame(bust, blackjack, dealerWin){
 function displayValue(data, numDealerCards, numPlayerCards){
     let dealerValueElement = document.getElementById("dealerValue");
     let playerValueElement = document.getElementById("playerValue");
-    let dealerValue = 0;
-    let playerValue = 0;
-    for(let i = 0; i < numDealerCards; i++){
-        dealerValue+=data.data[0].hand[i].value;
-    }
-    for(let i = 0; i < numPlayerCards; i++){
-        playerValue+=data.data[1].hand[i].value;
-    }
-    dealerValueElement.innerHTML = "Total: " + dealerValue;
-    playerValueElement.innerHTML = "Total: " + playerValue;
+    let playerHandValue = 0;
+    let dealerHandValue = 0;
+    fetch(`${backendUrl}/handValueD`)
+    .then(response => response.json())
+    .then(data => {
+        dealerHandValue = data.data;
+        dealerValueElement.innerHTML = "Total: " + dealerHandValue;
+        fetch(`${backendUrl}/handValueP`)
+        .then(response => response.json())
+        .then(data => {
+            playerHandValue = data.data;
+            playerValueElement.innerHTML = "Total: " + playerHandValue;
+        })
+        .catch(error => {
+            console.error("Error in response");
+        });
+    })
+    .catch(error => {
+        console.error("Error in response");
+    });
 }
 
 function displayHands(data, numDealerCards, numPlayerCards){
