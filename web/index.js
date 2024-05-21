@@ -16,6 +16,30 @@ function gameStart(){
         console.log("Dealing initial hands");
         displayHands(data, numDealerCards, numPlayerCards);
         displayValue(data, numDealerCards, numPlayerCards);
+        let playerHandValue = 0;
+        let dealerHandValue = 0;
+        fetch(`${backendUrl}/handValueD`)
+        .then(response => response.json())
+        .then(data => {
+            dealerHandValue = data.data;
+            if(dealerHandValue == 21){
+                endGame(false, false, true);
+            }
+            fetch(`${backendUrl}/handValueP`)
+            .then(response => response.json())
+            .then(data => {
+                playerHandValue = data.data;
+                if(playerHandValue == 21){
+                    endGame(false, true, false);
+                }
+            })
+            .catch(error => {
+                console.error("Error in response");
+            });
+        })
+        .catch(error => {
+            console.error("Error in response");
+        });
     })  
     .catch(error => {
         console.error("Error in response");
@@ -105,8 +129,20 @@ function endGame(bust, blackjack, dealerWin){
     //calculate scores and display output
     //make sure to terminate game in backend server
     let winnerBox = document.getElementById("winnerBox");
+    if(blackjack){
+        console.log("Player Wins")
+        winnerBox.innerHTML = "You Win by Blackjack!!!";
+        fetch(`${backendUrl}/restart`)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Restarting server");
+        })
+        .catch(error => {
+            console.error("Error in response");
+        });
+    }
     if(bust||dealerWin){//dealer wins
-        console.log("Dealer Wins!!!");
+        console.log("Dealer Wins");
         if(bust){
             winnerBox.innerHTML = "Dealer Wins by Bust!!!";
         }else{
