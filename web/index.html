@@ -5,54 +5,119 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="index.js" defer></script>
         <title>Black Jack</title>
-    </head>
-    <body>
-        <div id="dealerTitle">Dealer Hand:</div>
-        <div id="dealerStatArea">
-            <div id="dealerCardsTitle">Cards:</div>
-            <div id="dealerCards"></div>
-            <div id="dealerValue"></div>
-        </div>
-        <div id="playerTitle">Your Hand:</div>
-        <div id="playerStatArea">
-            <div id="playerCardsTitle">Cards:</div>
-            <div id="playerCards"></div>
-            <div id="playerValue"></div>
-        </div>
-        <button id="playButton" onclick="gameStart()">Start Game</button>
-        <button id="hitButton" onclick="playerHit()">Hit</button>
-        <button id="stayButton" onclick="dealerTurn()">Stay</button>
         <style>
-            #dealerStatArea{
-                margin-left: 10px;
+            header{
+                color: white;
+                background-color:  #c1b6ba;
+                padding: 20px;
+                text-align: center;
             }
-
-            #playerStatArea{
-                margin-left: 10px;
+            footer {
+                background-color: #c1b6ba;
+                color: white; 
+                padding: 20px;
+                text-align: center;
             }
-
-            #splitButton{
-                visibility: hidden;
-            }
-
-            #playerCards{
-                margin-left: 10px;
-            }
-
-            #dealerCards{
-                margin-left: 10px;
-            }
-
-            #dealerValue{
-                margin-left: 10px;
-            }
-
-            #playerValue{
-                margin-left: 10px;
+            body{
+                margin: 0;
             }
         </style>
-        <button id="doubleButton">Double Down</button>
-        <button id="splitButton">Split</button>
-        <div id="winnerBox"></div>
+    </head>
+    <body>
+        <div id="screen">
+            <div id="playArea">
+                <div id="dealerTitle">Dealer Hand:</div>
+                <div id="dealerStatArea">
+                    <div id="dealerCardsTitle">Cards:</div>
+                    <div id="dealerCards"></div>
+                    <div id="dealerValue"></div>
+                </div>
+                <div id="playerTitle">Your Hand:</div>
+                <div id="playerStatArea">
+                    <div id="playerCardsTitle">Cards:</div>
+                    <div id="playerCards"></div>
+                    <div id="playerValue"></div>
+                </div>
+                <button id="playButton" onclick="gameStart()">Start Game</button>
+                <button id="hitButton" onclick="playerHit()">Hit</button>
+                <button id="stayButton" onclick="dealerTurn()">Stay</button>
+                <style>
+                    #playerTitle{
+                        font-weight: bold;
+                    }
+
+                    #dealerTitle{
+                        font-weight: bold;
+                    }
+
+                    #playerCardsTitle{
+                        font-weight: bold;
+                    }
+
+                    #dealerCardsTitle{
+                        font-weight: bold;
+                    }
+
+                    #dealerStatArea{
+                        margin-left: 5px;
+                        margin-bottom: 15px;
+                    }
+
+                    #playerStatArea{
+                        margin-left: 10px;
+                    }
+
+                    #splitButton{
+                        visibility: hidden;
+                    }
+
+                    #playerCards{
+                        margin-left: 10px;
+                    }
+
+                    #dealerCards{
+                        margin-left: 10px;
+                    }
+
+                    #dealerValue{
+                        margin-left: 10px;
+                    }
+
+                    #playerValue{
+                        margin-left: 10px;
+                    }
+                </style>
+                <button id="doubleButton">Double Down</button>
+                <button id="splitButton">Split</button>
+                <div id="winnerBox"></div>
+                <style>
+                    #winnerBox{
+                        font-weight: bold;
+                    }
+                </style>
+            </div>
+            <style>
+                #playArea{
+                    margin-left: 500px;
+                    margin-top: 150px;
+                    border: 2px solid black;
+                    border-radius: 25px;
+                    height: 500px;
+                    width: 400px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                    font-size: larger;
+                    background-color: #8c1731;
+                }
+            </style>
+        </div>
+        <style>
+            #screen{
+                background-color: #c1b6ba;
+            }
+        </style>
     </body>
 </html>
