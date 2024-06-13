@@ -4,6 +4,10 @@ let numPlayerCards = 0;
 
 
 console.log("Waiting for game to start");
+
+/**
+ * Function tto initiate beginning of game (Deals both hands and checks for black jack)
+ */
 function gameStart(){
     console.log("Starting game");
     const playButton = document.getElementById("playButton");
@@ -46,6 +50,10 @@ function gameStart(){
     });
 }
 
+/**
+ * Function to communicate to backend that the player would like to add a card to their hand
+ * This function handles tthe "hit" implications that follow response from backend
+ */
 function playerHit(){
     console.log("Player hits");
     fetch(`${backendUrl}/playerHit`)
@@ -73,6 +81,9 @@ function playerHit(){
     });
 }
 
+/**
+ * Function to check if the dealer should continue to play their turn
+ */
 function dealerHandCheck(){
     let dealerHandValue = 0;
     fetch(`${backendUrl}/handValueD`)
@@ -88,6 +99,10 @@ function dealerHandCheck(){
     });
 }
 
+/**
+ * Function to communicate with backend when dealing with dealer turn play logic
+ * This function handles implications of dealer play after responses from backend
+ */
 function dealerTurn(){
     console.log("Dealers turn");
     let dealerHandValue = 0;
@@ -118,11 +133,22 @@ function dealerTurn(){
     
 }
 
+/**
+ * UNIMPLEMENTED
+ * Function for player to double down their hand 
+ */
 function doubleDown(){
     //double down code
     dealerTurn();
 }
 
+/**
+ * Function to deal with the frontend reaction to end of game
+ * @param {*} bust boolean of whether the player "busted"
+ * @param {*} blackjack boolean of whether the player drew a black jack hand
+ * @param {*} dealerWin boolean if the dealer won during their turn
+ * Note: after completion of this function, this function signals to backend that it should shut down
+ */
 function endGame(bust, blackjack, dealerWin){
     console.log("Game over");
     //end game code
@@ -196,6 +222,12 @@ function endGame(bust, blackjack, dealerWin){
     }
 }
 
+/**
+ * Function to display the current value of both players hands
+ * @param {*} data data from ajax passed to the function for display usage
+ * @param {*} numDealerCards current number of cards in dealers hand
+ * @param {*} numPlayerCards current number of cards in players hand
+ */
 function displayValue(data, numDealerCards, numPlayerCards){
     let dealerValueElement = document.getElementById("dealerValue");
     let playerValueElement = document.getElementById("playerValue");
@@ -221,6 +253,12 @@ function displayValue(data, numDealerCards, numPlayerCards){
     });
 }
 
+/**
+ * Function to display individual cards of player hand
+ * @param {*} data data from ajax to be used for the display
+ * @param {*} numDealerCards current number of cards in dealer hand
+ * @param {*} numPlayerCards current number of cards in players hand
+ */
 function displayHands(data, numDealerCards, numPlayerCards){
     let dealerCards = document.getElementById("dealerCards");
     let dealerCardsStr = "";
@@ -236,6 +274,11 @@ function displayHands(data, numDealerCards, numPlayerCards){
     playerCards.innerHTML = playerCardsStr;
 }
 
+/**
+ * Function to parse what suit a card based on its suit value received in ajax responsee
+ * @param {*} suit data field from ajax response
+ * @returns string of correct suit to use for card display
+ */
 function suitParse(suit){
     let res = "";
     if(suit.club){
@@ -250,6 +293,10 @@ function suitParse(suit){
     return res;
 }
 
+/**
+ * Function to access differently scoped boolean data and change its value to true
+ * @param {*} bool Boolean data to mutate
+ */
 function initiateStart(bool){
     bool = true;
 }

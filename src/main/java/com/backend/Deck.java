@@ -3,8 +3,15 @@ package main.java.com.backend;
 import java.util.*;
 import java.lang.*;
 
+/**
+ * Class to model a deck of cards in game backend
+ */
 public class Deck{
-    ArrayList<Card> deck = new ArrayList<>();
+    ArrayList<Card> deck = new ArrayList<>();//data structure to hold card data for deck object to use
+
+    /**
+     * Constructor
+     */
     public Deck(){
         //heart
         for(int i = 1; i <= 9; i++){
@@ -40,17 +47,31 @@ public class Deck{
         deck.add(new Card("Ace", new Suit(4), 11));
         shuffle();
     }
+
+    /**
+     * Function to simulate drawing a card of the top of the deck
+     * @return Card object on top of the deck
+     */
     public Card dealHit(){
         Card card = this.deck.get(0);
         this.deck.remove(0);
         return card;
     }
+
+    /**
+     * Function to deal an initial hand in the game of black jack
+     * @return Black Jack "Hand" object
+     */
     public Hand deal(){
         Hand hand = new Hand(this.deck.get(0), this.deck.get(1));
         this.deck.remove(0);
         this.deck.remove(0);
         return hand;
     }
+
+    /**
+     * Function to shuffle card objects indices in deck for pseudo randomness
+     */
     public void shuffle(){
         Random rand = new Random();
         for(int i = 0; i < 52; i++){

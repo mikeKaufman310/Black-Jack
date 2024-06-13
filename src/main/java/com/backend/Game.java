@@ -8,7 +8,15 @@ import java.lang.*;
 import spark.Spark;
 import com.google.gson.*;
 
+/**
+ * Class to hold Apache Spark Endpoints for backend to communicate game logic
+ */
 public class Game{
+
+    /**
+     * Main method containing rest api endpoints
+     * @param argv command line arguments (unused)
+     */
     public static void main(String[] argv){
         //System.out.println("Main");
         Spark.port(4567);
@@ -16,6 +24,7 @@ public class Game{
         Hand dealerHand = gameDeck.deal();
         Hand playerHand = gameDeck.deal();
         final Gson gson = new Gson();
+
         //send hand values to front end to display
         Spark.get("/hands", (req, res) -> {
             ApiResponse<Hand[]> response = new ApiResponse<>();
@@ -26,6 +35,8 @@ public class Game{
             res.type("application/json");
             return new Gson().toJson(response);
         });
+
+        //player adds card to their hand
         Spark.get("/playerHit", (req, res) -> {
             ApiResponse<Hand[]> response = new ApiResponse<>();
             response.setSuccess(true);
@@ -36,6 +47,8 @@ public class Game{
             res.type("application/json");
             return new Gson().toJson(response);
         });
+
+        //dealer adds card to their hand
         Spark.get("/dealerHit", (req, res) -> {
             ApiResponse<Hand[]> response = new ApiResponse<>();
             response.setSuccess(true);
@@ -46,6 +59,8 @@ public class Game{
             res.type("application/json");
             return new Gson().toJson(response);
         });
+
+        //endpoint to get the hand value of the player
         Spark.get("/handValueP", (req, res) -> {
             res.type("application/json");
             ApiResponse<Integer> response = new ApiResponse<>();
@@ -54,6 +69,8 @@ public class Game{
             response.setData(playerHand.handValue());
             return new Gson().toJson(response);
         });
+
+        //endpoint to get the hand value of the dealer
         Spark.get("/handValueD", (req, res) -> {
             res.type("application/json");
             ApiResponse<Integer> response = new ApiResponse<>();
@@ -62,6 +79,8 @@ public class Game{
             response.setData(dealerHand.handValue());
             return new Gson().toJson(response);
         });
+
+        //endpoint to shutdown or restart backend server
         Spark.get("/restart", (req, res) -> {
             res.type("application/json");
             ApiResponse<Boolean> response = new ApiResponse<>();
