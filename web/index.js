@@ -11,6 +11,12 @@ console.log("Waiting for game to start");
 function gameStart(){
     console.log("Starting game");
     const playButton = document.getElementById("playButton");
+    const doubleButton = document.getElementById("doubleButton");
+    const hitButton = document.getElementById("hitButton");
+    const stayButton = document.getElementById("stayButton");
+    doubleButton.style.visibility = "visible";
+    hitButton.style.visibility = "visible";
+    stayButton.style.visibility = "visible";
     playButton.style.display = "none";
     fetch(`${backendUrl}/hands`)
     .then(response => response.json())

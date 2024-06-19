@@ -42,6 +42,14 @@
                 <button id="hitButton" onclick="playerHit()">Hit</button>
                 <button id="stayButton" onclick="dealerTurn()">Stay</button>
                 <style>
+                    #hitButton{
+                        visibility: hidden;
+                    }
+
+                    #stayButton{
+                        visibility: hidden;
+                    }
+
                     #playerTitle{
                         font-weight: bold;
                     }
@@ -91,6 +99,10 @@
                 <button id="splitButton">Split</button>
                 <div id="winnerBox"></div>
                 <style>
+                    #doubleButton{
+                        visibility: hidden;
+                    }
+
                     #winnerBox{
                         font-weight: bold;
                     }
